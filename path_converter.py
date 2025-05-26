@@ -37,7 +37,7 @@ def windows_to_smb(win_path):
     """Windows路径转SMB格式"""
     if win_path.startswith("\\\\"):
         win_path = win_path.replace("\\", "/")
-        return f"smb:/{win_path}"
+        return f"smb:{win_path}"
     return win_path
 
 def mac_to_smb(mac_path):
