@@ -1,0 +1,31 @@
+# .github/workflows/convert-path.yml
+name: Path Converter
+
+on:
+  push:
+    paths:
+      - 'input.txt'  # 仅在input.txt变更时触发
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Run Path Converter
+        run: |
+          python path_converter.py
+
+      - name: Commit Result
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add output.txt
+          git commit -m "Auto: Converted file path"
+          git push
