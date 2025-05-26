@@ -1,10 +1,9 @@
-# .github/workflows/convert-path.yml
 name: Path Converter
 
 on:
   push:
     paths:
-      - 'input.txt'  # 仅在input.txt变更时触发
+      - 'input.txt'
 
 jobs:
   convert:
@@ -12,6 +11,9 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+        with:
+          # 明确拉取所有分支历史（避免浅克隆问题）
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -28,4 +30,7 @@ jobs:
           git config --global user.email "actions@github.com"
           git add output.txt
           git commit -m "Auto: Converted file path"
-          git push
+          # 强制推送（如有冲突）
+          git push "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" HEAD:main --force
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
