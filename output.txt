@@ -1,1 +1,1 @@
-smb:///10.163.0.55/Share-sea/Share-SEA/SEAteam01/01-Slotgames/_110118_RB2 THE NEWCOMERS X JW/03_动效资源/人物/火舞选择/export
+smb://10.163.0.55/Share-sea/Share-SEA/SEAteam01/01-Slotgames/_110118_RB2 THE NEWCOMERS X JW/03_动效资源/人物/火舞选择
